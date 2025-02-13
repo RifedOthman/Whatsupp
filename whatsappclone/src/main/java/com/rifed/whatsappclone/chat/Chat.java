@@ -19,6 +19,13 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name ="chat")
+
+// sender ID is the first one who initialized the chat that's why i wrote THE OR
+@NamedQuery(name = ChatConstants.FIND_CHAT_BY_SENDER_ID,
+        query="SELECT DISTINCT c FROM Chat c WHERE c.sender.id = :senderId OR c.recipient.id = :senderId ORDER BY createdDate DESC")
+
+@NamedQuery(name = ChatConstants.FIND_CHAT_BY_SENDER_ID_AND_RECEIVER,
+            query = "SELECT DISTINCT c FROM Chat c where (c.sender.id = :senderId AND c.recipient = :recipientId ) OR (c.sender.id = :recipientId AND c.recipient = :senderId)")
 public class Chat extends BaseAuditingEntity {
 
     @Id
@@ -36,7 +43,6 @@ public class Chat extends BaseAuditingEntity {
     @OneToMany(mappedBy = "chat" , fetch = FetchType.EAGER)
     @OrderBy("createdDate DESC")
     private List<Message> messages ;
-
 
     @Transient
     public String getChatName(final String senderId) {
