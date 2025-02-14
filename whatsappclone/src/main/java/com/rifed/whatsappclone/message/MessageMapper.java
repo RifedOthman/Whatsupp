@@ -1,5 +1,6 @@
 package com.rifed.whatsappclone.message;
 
+import com.rifed.whatsappclone.file.FileUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,8 +15,7 @@ public class MessageMapper {
                 .type(message.getType())
                 .state(message.getState())
                 .createdAt(message.getCreatedDate())
-
-                //read MEDIA FILE LATER
+                .media(FileUtils.readFileFromLocation(message.getMediaFilePath()))
                 .build();
 
     }
