@@ -45,7 +45,7 @@ public class MessageService {
                 .toList() ;
     }
 
-    @Transactional
+    @Transactional // either all messages are updated successfully or nothing is changed Here
     public void setMessagesToSeen(String chatId, Authentication authentication){
         Chat chat = chatRepository.findById(chatId)
                 .orElseThrow(() -> new EntityNotFoundException("Chat not found"));
