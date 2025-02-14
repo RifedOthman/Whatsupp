@@ -32,7 +32,7 @@ public class KeyCloakJwtAuthenticationConverter implements Converter<Jwt, Abstra
 
     private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt) {
             var resourceAcces = new HashMap<>(jwt.getClaim("resource_access"));
-            var eternal = (Map< String, List<String>>)resourceAcces.get("account");
+            var eternal = (Map< String,List<String>>)resourceAcces.get("account");
             var roles = eternal.get("roles");
 
                 return roles.stream()

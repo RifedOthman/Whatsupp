@@ -16,6 +16,7 @@ import java.util.Optional;
 public class ChatService {
 
     private final ChatRepository chatRepository;
+    private final UserRepository userRepository;
     private final ChatMapper mapper ;
 
     @Transactional(readOnly = true)
@@ -38,9 +39,10 @@ public class ChatService {
             return existingChat.get().getId();
         }
 
-        User sender = UserRepository.findByPublicId(senderId)
+        User sender = userRepository.findByPublicId(senderId)
                 .orElseThrow(() ->  new EntityNotFoundException("User with id " + senderId + " not found"));
-        User receiver = UserRepository.findByPublicId(receiverId)
+
+        User receiver = userRepository.findByPublicId(receiverId)
                 .orElseThrow(() ->  new EntityNotFoundException("User with id " + receiverId + " not found"));
 
         Chat chat = new Chat();

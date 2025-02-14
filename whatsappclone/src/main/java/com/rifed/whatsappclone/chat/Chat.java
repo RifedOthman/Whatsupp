@@ -59,7 +59,8 @@ public class Chat extends BaseAuditingEntity {
     @Transient
     public long getUnreadMessage(final String senderId) {
         return messages
-                .stream().filter(m -> m.getReceiverId().equals(senderId))
+                .stream()
+                .filter(m -> m.getReceiverId().equals(senderId))
                 .filter(m -> MessageState.SENT == m.getState())
                 .count();
     }

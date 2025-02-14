@@ -42,6 +42,5 @@ public class User {
     @Transient
     public boolean isUserOnline() {
         return lastSeen != null && lastSeen.isBefore(LocalDateTime.now().minusMinutes(LAST_ACTIVE_INTERVAL));
-
     }
 }
