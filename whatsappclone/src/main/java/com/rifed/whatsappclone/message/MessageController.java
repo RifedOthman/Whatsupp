@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1/messages")
 @RequiredArgsConstructor
 
 public class MessageController {
@@ -22,7 +22,6 @@ public class MessageController {
     @ResponseStatus
     public void saveMessage(@RequestBody MessageRequest message){
         messageService.saveMessage(message);
-
     }
 
     @PostMapping(value = "/uploadMedia", consumes= "multipart/form-data")
@@ -45,7 +44,7 @@ public class MessageController {
     @GetMapping("/chat/{chat-id}")
     public ResponseEntity<List<MessageResponse>> getMessages (@PathVariable("chat-id") String chatId)
     {
-        return ResponseEntity.ok(messageService.findChatMessages(chatId))
+        return ResponseEntity.ok(messageService.findChatMessages(chatId));
     }
 
 }
