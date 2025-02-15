@@ -29,13 +29,14 @@ public class KeyCloakJwtAuthenticationConverter implements Converter<Jwt, Abstra
         );
     }
 
-
+//collection so we return any type Set,List,Queue
     private Collection<? extends GrantedAuthority> extractResourceRoles(Jwt jwt) {
             var resourceAcces = new HashMap<>(jwt.getClaim("resource_access"));
-            var eternal = (Map< String,List<String>>)resourceAcces.get("account");
-            var roles = eternal.get("roles");
+            var acc = (Map<String,List<String>>)resourceAcces.get("account");
+            var roles = acc.get("roles");
 
-                return roles.stream()
+                return roles
+                        .stream()
                         .map(role -> new SimpleGrantedAuthority("ROLE" + role.replace("-","_")))
                         .collect(toSet());
     }

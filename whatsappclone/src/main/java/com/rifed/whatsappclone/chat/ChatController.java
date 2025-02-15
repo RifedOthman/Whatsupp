@@ -10,7 +10,6 @@ import org.springframework.security.core.Authentication;
 @RequestMapping("/api/v1/chats")
 @RequiredArgsConstructor
 public class ChatController {
-
     private final ChatService chatService;
 
     @PostMapping

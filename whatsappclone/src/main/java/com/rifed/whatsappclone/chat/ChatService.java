@@ -21,16 +21,12 @@ public class ChatService {
 
     @Transactional(readOnly = true)
     public List<ChatResponse> getChatsByReceiverId(Authentication currentUser) {
-
-
         final String userId = currentUser.getName();
-
         return chatRepository.findChatsBySenderId(userId)
                 .stream()
                 .map(c -> mapper.toChatResponse(c,userId))
                 .toList() ;
     }
-
 
     public String createChat(String senderId, String receiverId) {
 

@@ -24,7 +24,6 @@ public class UserSynchronizer {
         User user = userMapper.fromTokenAttribute(token.getClaims()) ;
         // optionalUser.ifPresent(value -> user.setId(optionalUser.get().getId()));
         userRepository.save(user);
-
     });
     }
 
