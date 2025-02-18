@@ -19,7 +19,5 @@ public class NotificationService {
                 userId,
                 "/chat",
                 notification );
-
-
     }
 }
