@@ -1,5 +1,6 @@
 package com.rifed.whatsappclone.chat;
 import com.rifed.whatsappclone.common.StringResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,8 @@ import org.springframework.security.core.Authentication;
 @RestController
 @RequestMapping("/api/v1/chats")
 @RequiredArgsConstructor
+@Tag(name="CHAT")
+
 public class ChatController {
     private final ChatService chatService;
 

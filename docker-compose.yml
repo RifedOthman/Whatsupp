@@ -20,7 +20,7 @@ services:
     container_name: keycloak-wac
     image: quay.io/keycloak/keycloak:26.0.0
     ports:
-      - 9090:8080
+      - 9090:8081
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
